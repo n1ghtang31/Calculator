@@ -10,6 +10,9 @@ body {
     background: linear-gradient(to right, #00AAFF, #00FF6C);
 
 }
+h1 {
+  text-align: center;
+}
 
 .calculator-grid {
     display: grid;
@@ -17,7 +20,7 @@ body {
     align-content: center;
     min-height: 100vh;
     grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(120px, auto) repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
 .calculator-grid > button {
