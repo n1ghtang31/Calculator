@@ -33,6 +33,9 @@ class Calculator{
         let computation
         const prev = parseFloat(this.previousOperand)
         const current = parseFloat(this.currentOperand)
+        console.log("this is prev in compute funtion" + prev)
+        console.log("this is current in compute function" + current)
+        console.log("What is the operand" + this.operation)
         if (isNaN(prev) || isNaN(current)) return
         switch (this.operation) {
             case '+':
@@ -51,8 +54,19 @@ class Calculator{
                 return
         }
         this.currentOperand = computation
+
+         /*adding history function */
+        
+         let historyTextpush = `${prev} ${this.operation} ${current} = ${computation}`
+         console.log(historyTextpush)
+         histList.push(historyTextpush)
+         
+         /*reseting variables*/
         this.operation = undefined
         this.previousOperand = ''
+
+       
+        
     }
 
     getDisplayNumber(number) {
@@ -80,6 +94,13 @@ class Calculator{
             this.previousOperandTextElement.innerText = ''
         }
     }
+
+    limitHistory() {
+        histList.slice(histList.length)
+        
+        
+
+    }
 }
 
 const numberButtons = document.querySelectorAll('[data-number]')
@@ -89,6 +110,10 @@ const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-all-clear]')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
+
+const historyTextElement = document.querySelector('[data-hist]')
+let histList = []
+
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
@@ -120,3 +145,7 @@ deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
+
+historyTextElement.addEventListener('click', button => {
+    console.log(histList)
+} )
